@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>排队取号系统 | 取号</title>
+    <script src="frameworks/angular/angular.js"></script>
+    <script src="frameworks/js/HomeController.js"></script>
+    <script src="frameworks/js/LodopFuncs.js"></script>
+
+</head>
+<script>
+    window.onload=function(){
+        document.getElementById('input').focus()
+        document.getElementById('input').onblur=function(){
+             var that = this;
+             setTimeout(function () {
+                 that.focus();
+             },500)
+        }
+        var date = new Date();
+        var dateyear = date.getFullYear();
+        document.getElementById('years').innerHTML=dateyear;
+    }
+
+
+</script>
+<style type="text/css"  id="style1">
+    ul{
+        list-style: none;
+        width: 300px;
+        padding: 0;
+    }
+    #qhhm{
+        font-size: 35px;
+        margin-left: 7px;
+
+    }
+    #xm{
+        margin-top: 10px;
+        font-size: 25px;
+        text-align: center;
+        width: 150px;
+
+    }
+    #sfz{
+        margin-top: 20px;
+
+
+    }
+    #xjh{
+        margin-top: 5px;
+        text-align: center;
+    }
+    #time{
+        margin-top: 5px;
+
+    }
+    @media print {
+        #btn{
+            display: none;
+        }
+        #searchInput{
+            display: none;
+        }
+    }
+
+</style>
+<body ng-app="module" ng-controller="HomeController">
+<div id="dayincontent" style="display: none">
+    <div style="width: 200px;font-size: 16px">南京工业职业技术学院<br /></div>
+    <div style="width: 200px;font-size: 14px;margin-left: 25px"><span id="years"></span>年提前招生<br /><br /></div>
+    <div style="width: 200px;font-size: 19px;margin-left:25px"><b>面试顺序号</b><br /><br /></div>
+    <div id="qhhm">{{data.numberType}}{{data.number}}</div>
+    <div id="xm">{{data.ksName}}</div>
+    <div id="sfz">身份证号：<br />{{data.ksSfzh}}</div>
+    <div id="time">取号时间：<br />{{data.qhTime | date : 'yyyy-MM-dd HH:mm:ss'}}<br /></div>
+    <span style="font-size: 14px"><br />注：凭此顺序号排队入场</span>
+</div>
+<input style="display: none" id="btn" type="button" value="打印" style="width: 100px;height: 50px" ng-click="print()">
+<div  id ="searchInput" style="position: absolute;left: 33%;top: 30%">考生身份证号：<input type="text" id="input" style="width: 400px;height: 50px;font-size: 20px" ng-model="sfzh" ng-change="sendSfzh()"/>
+    <input type="button" id="btn1" value="查询" style="width: 100px;height: 50px;font-size: 15px" ng-click="sendSfzh(sfzh)">
+    <div id="Dialog" style="font-size: 50px;margin-left:140px;margin-top: 60px;color: red"></div>
+
+</div>
+<a href="zkzchaxun.html"><button>准考证入场</button></a>
+<button onclick="exportExcel()">导出</button>
+</body>
+<script>
+    function exportExcel(){
+        window.open("excel","_blank");
+    }
+</script>
+
+</html>

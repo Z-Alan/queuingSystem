@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排队取号系统 | 入场</title>
+    <script src="frameworks/angular/angular.js"></script>
+    <script src="frameworks/js/ZkzController.js"></script>
+</head>
+<script>
+     window.onload = function () {
+         document.getElementById('inputZkz').focus();
+         document.getElementById('inputZkz').onblur = function () {
+             var that = this;
+             setTimeout(function () {
+                 that.focus();
+             },500);
+         }
+     }
+</script>
+
+<style>
+    #ksContent{
+        margin-top: 100px;
+        margin-left: 50px;
+    }
+
+
+</style>
+
+<body ng-app="module" ng-controller="ZkzController">
+
+    <div id="srZkz" style="position: absolute;left: 33%;top: 30%">
+       请输入准考证号 <input type="text" id="inputZkz" style="width: 400px;height: 50px;font-size: 20px" ng-model="zkzh" ng-change="functionzkzh(zkzh)">
+        <input type="button" id="btnZkz" value="查询"style="width: 100px;height: 50px;font-size: 15px"ng-click="functionzkzh(zkzh)" >
+
+        <div id="ksContent">
+            <table border="1px">
+                <tr>
+                    <td><img src="img/{{ksInfor.ksKjh}}.jpg" height="200" width="200"></td>
+                    <td colspan="2" style="text-align: center">姓名：{{ksInfor.ksName}}</td>
+                </tr>
+                <tr>
+                    <td>准考号：<br />{{ksInfor.ksZkzh}}</td>
+                    <td>取票时间：<br />{{ksInfor.qhTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>入场时间：<br />{{ksInfor.enterTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+                </tr>
+                <tr>
+                    <td>取票号：<br />{{ksInfor.numberType}}{{ksInfor.number}}</td>
+                    <td colspan="2">身份证号：<br />{{ksInfor.ksSfzh}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<div id="viewContent" style="text-align: center;margin-top: 100px;font-size: 35px;color: red"></div>
+
+
+
+</body>
+</html>

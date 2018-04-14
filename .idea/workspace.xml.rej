@@ -1,0 +1,9 @@
+diff a/.idea/workspace.xml b/.idea/workspace.xml	(rejected hunks)
+@@ -6,7 +6,6 @@
+     </artifacts-to-build>
+   </component>
+   <component name="ChangeListManager">
+-    </list>
+     <list default="true" id="ad993bca-c84a-4812-8d63-4eb5465910c5" name="Default" comment="" />
+     <ignored path="$PROJECT_DIR$/out/" />
+     <ignored path="$PROJECT_DIR$/target/" />

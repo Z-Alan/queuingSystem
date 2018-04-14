@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.niit.danzhao.querySystem.dao.KsInformationDTO">
+
+
+    <select id="selectBySfzh" parameterType="String" resultType="edu.niit.danzhao.querySystem.model.VO.KsInformationVO">
+        SELECT *
+        FROM ks_information_vw kiv
+        WHERE kiv.sfzh = #{ksSfzh};
+    </select>
+
+
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.niit.danzhao.querySystem.dao.FunctionQuHaoDAO">
+
+
+    <resultMap id="functionQuHao" type="edu.niit.danzhao.querySystem.model.FunctionQuHao">
+        <id column="quhao_id" property="quhaoId"/>
+        <result column="ks_name" property="ksName"/>
+        <result column="ks_sfzh" property="ksSfzh"/>
+        <result column="ks_kjh" property="ksKjh"/>
+        <result column="ks_zkzh" property="ksZkzh"/>
+        <result column="number" property="number"/>
+        <result column="number_type" property="numberType"/>
+        <result column="qh_time" property="qhTime"/>
+        <result column="enter_time" property="enterTime"/>
+        <result column="qh_time_flag" property="qhTimeFlag"/>
+    </resultMap>
+
+
+    <select id="hasRecordBySfzh" parameterType="String" resultMap="functionQuHao">
+      SELECT *
+      FROM function_quhao fq
+      WHERE fq.ks_sfzh = #{sfzh}
+    </select>
+
+    <select id="maxNumberByNumberType" parameterType="String" resultType="edu.niit.danzhao.querySystem.model.FunctionQuHao">
+      SELECT * FROM function_quhao fq
+      WHERE fq.quhao_id = (SELECT MAX(quhao_id)
+                          FROM function_quhao
+                          WHERE number_type=#{numberType})
+      AND fq.`number_type`=#{numberType};
+    </select>
+
+    <select id="maxNumberByQhTimeFlag" parameterType="String" resultMap="functionQuHao">
+       SELECT * FROM function_quhao fq
+       WHERE fq.quhao_id = ( SELECT MAX(quhao_id)
+                             FROM function_quhao
+                             WHERE qh_time_flag=#{qhTimeFlag})
+       AND fq.`qh_time_flag`=#{qhTimeFlag};
+    </select>
+
+    <insert id="insertReturnAutoPrimaryKey" keyProperty="quhaoId" useGeneratedKeys="true" parameterType="edu.niit.danzhao.querySystem.model.FunctionQuHao" >
+      INSERT INTO function_quhao(ks_name,ks_sfzh,ks_kjh,ks_zkzh,qh_time,number,number_type,qh_time_flag)
+      VALUES(#{ksName},#{ksSfzh},#{ksKjh},#{ksZkzh},#{qhTime},#{number},#{numberType},#{qhTimeFlag})
+    </insert>
+
+    <update id="updateEnterTime" parameterType="functionQuHao">
+        UPDATE function_quhao fq
+        SET fq.enter_time = #{enterTime}
+        WHERE fq.ks_zkzh=#{ksZkzh}
+    </update>
+
+    <select id="selectByZkzh" parameterType="String" resultMap="functionQuHao">
+        SELECT *
+        FROM function_quhao fq
+        WHERE fq.ks_zkzh =#{ksZkzh}
+    </select>
+</mapper>

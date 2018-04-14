@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="queuingSystem:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="queuingSystem.war">
+      <element id="artifact" artifact-name="queuingSystem:war exploded" />
+    </root>
+  </artifact>
+</component>

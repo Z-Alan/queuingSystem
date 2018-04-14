@@ -762,7 +762,7 @@
       <workItem from="1523689595269" duration="51000" />
       <workItem from="1523689670369" duration="151000" />
       <workItem from="1523689845326" duration="3621000" />
-      <workItem from="1523702167017" duration="653000" />
+      <workItem from="1523702167017" duration="808000" />
     </task>
     <task id="LOCAL-00001" summary="添加fastjson依赖">
       <created>1523690675430</created>
@@ -807,7 +807,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162832000" />
+    <option name="totallyTimeSpent" value="162987000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
